@@ -1,6 +1,0 @@
-[submodule "Backend"]
-	path = Backend
-	url = git@github.com:dukhyunko93/ParkingEasyBE.git
-[submodule "Frontend"]
-	path = Frontend
-	url = git@github.com:dukhyunko93/ParkingEasyFE.git
