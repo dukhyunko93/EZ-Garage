@@ -1,0 +1,99 @@
+html, body, #root {
+    margin: 0;
+    height: 100%;
+}
+
+.NavBar {
+    height: 8%;
+}
+
+.NavBar > header {
+    height: 100%
+}
+
+.Pages {
+    height: 92%
+}
+
+.show-index {
+    position: absolute;
+    right: 0;
+    top: 8%;
+    width: 25%;
+    display: block;
+}
+
+.show-index [data-reach-combobox]{
+    position: relative;
+    top: 8%;
+    margin: 0.5rem;
+}
+
+.show-index [data-reach-combobox-input] {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.profile{
+    display: flex;
+}
+
+.map-index{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cards-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ui-datepicker { 
+    margin-left: 100px;
+    z-index: 1000;
+}
+
+.DateInput_input{
+    display: block!important;
+    width: 100%!important;
+    height: calc(1.5em + .75rem + 2px)!important;
+    padding: .375rem .75rem!important;
+    font-size: 1rem!important;
+    font-weight: 400!important;
+    line-height: 1.5!important;
+    color: #495057!important;
+    background-color: #fff!important;
+    background-clip: padding-box!important;
+    border: 1px solid #ced4da!important;
+    border-radius: .25rem!important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out!important;
+}
+
+.my-listings, .my-rentals{
+    padding: 20px;
+    margin-top: 20px;
+    width: 50%
+}
+
+.DatePicker__calendarContainer {
+    position: absolute;
+    top: calc(100% + 2em);
+}
+
+.modal-content {
+    background-color: transparent !important;
+}

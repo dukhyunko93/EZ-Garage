@@ -1,0 +1,59 @@
+.home-background {
+    background-image: url('../img/pexels-gratisography-474.jpg');
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.home-search {
+    text-align: center;
+    padding: 80px;
+}
+
+.search-container {
+    color: white;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    background: rgba(0, 0, 0, 0.4);
+    width: 50%;
+    padding: 20px;
+    margin:0 auto !important;
+    display: block !important;
+}
+
+.search-container button{
+    margin-top: 20px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.home-search [data-reach-combobox-input] {
+    width: 100%;
+    height: 40px;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.product-values {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.value {
+    color: white;
+    border-radius: 1em;
+    width: 340px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    text-align: center;
+}
+
+.value p {
+    word-wrap: break-word;
+  }
