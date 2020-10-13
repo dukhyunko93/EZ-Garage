@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Cookies from 'js-cookie';
-import { connect } from 'react-redux';
-import { Button, FormGroup, FormControl, InputLabel, Input, FormControlLabel, Checkbox } from '@material-ui/core';
-import AutoComplete from '../component/AutoComplete'
-import { Redirect, withRouter } from 'react-router';
-import './ListingForm.css';
+import React, { Component } from "react";
+import Cookies from "js-cookie";
+import { connect } from "react-redux";
+import { Button, FormGroup, FormControl, InputLabel, Input, FormControlLabel, Checkbox } from "@material-ui/core";
+import AutoComplete from "../component/AutoComplete"
+import { Redirect, withRouter } from "react-router";
+import "./ListingForm.css";
 
 class ListingForm extends Component{
     state = {
@@ -62,27 +62,28 @@ class ListingForm extends Component{
 
     postListing = () => {
         const formData = new FormData();
-        formData.append('title', this.state.title);
-        formData.append('address', this.props.address[0].address);
-        formData.append('latitude', this.props.address[0].lat);
-        formData.append('longitude', this.props.address[0].lng);
-        formData.append('price', this.state.price);
-        formData.append('checkin', this.state.checkin);
-        formData.append('checkout', this.state.checkout);
-        formData.append('vehicle_types', this.state.vehicleType);
-        formData.append('featured_image', this.state.featured_image);
-        formData.append('owner_id', this.props.user[0]?.id);
+        formData.append("title", this.state.title);
+        formData.append("address", this.props.address[0].address);
+        formData.append("latitude", this.props.address[0].lat);
+        formData.append("longitude", this.props.address[0].lng);
+        formData.append("price", this.state.price);
+        formData.append("checkin", this.state.checkin);
+        formData.append("checkout", this.state.checkout);
+        formData.append("vehicle_types", this.state.vehicleType);
+        formData.append("featured_image", this.state.featured_image);
+        formData.append("owner_id", this.props.user[0]?.id);
         
         let options = {
-            method: 'POST',
+            method: "POST",
             headers: {
-                Authorization: `Bearer ${Cookies.get('jwt')}`
+                Authorization: `Bearer ${Cookies.get("jwt")}`
             },
             body: formData
         }
 
-        fetch('http://localhost:3001/listings', options)
+        fetch("https://ez-garage-api.herokuapp.com/listings", options)
         .then(r => {
+            console.log(r)
             if (r.ok){
                 this.setState({ redirect: true })
             }
@@ -91,27 +92,27 @@ class ListingForm extends Component{
 
     patchListing = () => {
         const formData = new FormData();
-        formData.append('title', this.state.title);
-        formData.append('price', this.state.price);
-        formData.append('checkin', this.state.checkin);
-        formData.append('checkout', this.state.checkout);
-        formData.append('vehicle_types', this.state.vehicleType);
+        formData.append("title", this.state.title);
+        formData.append("price", this.state.price);
+        formData.append("checkin", this.state.checkin);
+        formData.append("checkout", this.state.checkout);
+        formData.append("vehicle_types", this.state.vehicleType);
         if (this.props.address.length > 0) {
-            formData.append('address', this.props.address[0]?.address);
-            formData.append('latitude', this.props.address[0]?.lat);
-            formData.append('longitude', this.props.address[0]?.lng);
+            formData.append("address", this.props.address[0]?.address);
+            formData.append("latitude", this.props.address[0]?.lat);
+            formData.append("longitude", this.props.address[0]?.lng);
         }
-        if ( typeof(this.state.featured_image) === "object"){formData.append('featured_image', this.state.featured_image)}
+        if ( typeof(this.state.featured_image) === "object"){formData.append("featured_image", this.state.featured_image)}
         
         let options = {
-            method: 'PATCH',
+            method: "PATCH",
             headers: {
-                Authorization: `Bearer ${Cookies.get('jwt')}`
+                Authorization: `Bearer ${Cookies.get("jwt")}`
             },
             body: formData 
         }
 
-        fetch(`http://localhost:3001/listings/${this.props.location.listingObj.id}`, options)
+        fetch(`https://ez-garage-api.herokuapp.com/listings/${this.props.location.listingObj.id}`, options)
         .then(r => {
             if (r.ok){
                 this.setState({ redirect: true })
@@ -123,12 +124,12 @@ class ListingForm extends Component{
         const { redirect } = this.state;
 
         if (redirect) {
-          return <Redirect to='/profile'/>;
+          return <Redirect to="/profile"/>;
         }
         return (
             <div className="ListingForm">
                 <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="title" bssize="large">
+                    <FormGroup bssize="large">
                         <FormControl>
                             <InputLabel >Parking Lot Title</InputLabel>
                             <Input                             
@@ -199,7 +200,7 @@ class ListingForm extends Component{
                             <AutoComplete onChangeHandler={this.addressHandler} listingForm listingObj={this.props.location.listingObj} edit={this.props.location.edit}/>
                         </FormControl>
                     </FormGroup>
-                    <Button block bssize="large" variant="secondary" type="submit" >
+                    <Button bssize="large" type="submit" >
                         {this.props.location.edit ? "Edit" : "Create Listing"}
                     </Button>
                 </form>
@@ -212,4 +213,4 @@ const mapStateToProps = state => {
     return state
   }
   
-  export default withRouter(connect(mapStateToProps)(ListingForm));
+export default withRouter(connect(mapStateToProps)(ListingForm));

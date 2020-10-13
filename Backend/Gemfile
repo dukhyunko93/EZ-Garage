@@ -48,4 +48,5 @@ gem "faker", "~> 1.9"
 
 gem "figaro"
 
+gem 'carrierwave'
 gem 'cloudinary'

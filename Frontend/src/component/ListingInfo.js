@@ -32,7 +32,7 @@ class ListingInfo extends Component{
             }
         }
       
-        return fetch(`http://localhost:3001/listings/${this.state.listing.id}`, options)
+        return fetch(`https://ez-garage-api.herokuapp.com//listings/${this.state.listing.id}`, options)
     }
 
     renderVehicleTypes = () => {

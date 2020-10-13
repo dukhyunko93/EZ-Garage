@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import Cookies from 'js-cookie';  
-import { Redirect } from 'react-router';
-import { Modal } from 'react-bootstrap/'
-import Checkout from '../component/CheckOut/Checkout'
+import React, { Component } from "react"
+import { connect } from "react-redux";
+import Cookies from "js-cookie";  
+import { Redirect } from "react-router";
+import { Modal } from "react-bootstrap/"
+import Checkout from "../component/CheckOut/Checkout"
 
 class ConfirmPage extends Component {
   state = {
@@ -11,7 +11,7 @@ class ConfirmPage extends Component {
   }
   
   makeReservation = () => {
-    let ls = require('local-storage')
+    let ls = require("local-storage")
     if (this.props.user.length > 0){    
       if (this.props.user[0].id !== this.props.selectedListing.listing.owner_id){
         let reservation = {
@@ -23,37 +23,37 @@ class ConfirmPage extends Component {
         this.postReservation(reservation)
         .then(r => {
           if (r.ok){
-            this.setState({redirect: 'profile'}, () => ls.clear())
+            this.setState({redirect: "profile"}, () => ls.clear())
           }
         })
       } else {
-        window.alert('Cannot rent your own property')
+        window.alert("Cannot rent your own property")
       }
     } else {
       this.props.toggleModal()
-      this.setState({redirect: 'login'})
+      this.setState({redirect: "login"})
     }
   }
 
   postReservation = reservation => {
     let options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('jwt')}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("jwt")}`
       },
       body: JSON.stringify({reservation: reservation})
     }
 
-    return fetch('http://localhost:3001/reservations', options)
+    return fetch("https://ez-garage-api.herokuapp.com/reservations", options)
   }
 
   render() {
     const { redirect } = this.state;
-    if (redirect === 'profile') {
-      return <Redirect to='/profile' />;
-    } else if (redirect === 'login'){
-      return <Redirect to='/login' />;
+    if (redirect === "profile") {
+      return <Redirect to="/profile" />;
+    } else if (redirect === "login"){
+      return <Redirect to="/login" />;
     }
 
     return (

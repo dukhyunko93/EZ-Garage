@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
 
     def create
         listing = Listing.create(listing_params)
-        respond_to_listing(listing)
+        # respond_to_listing(listing)
     end
 
     def show

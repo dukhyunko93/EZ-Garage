@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
-import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
-import { Redirect } from 'react-router';
-import logo from '../img/be4bc4c2-a23e-4217-a5ea-fef7c2a6bd13_200x200.png'
-import './Signup.css';
+import React, { Component } from "react";
+import { Button } from "@material-ui/core";
+import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { Redirect } from "react-router";
+import logo from "../img/be4bc4c2-a23e-4217-a5ea-fef7c2a6bd13_200x200.png"
+import "./Signup.css";
 
 class Signup extends Component{
     state = {
@@ -35,10 +35,10 @@ class Signup extends Component{
 
     postUser = () => {
         let options = {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
+                "Content-Type": "application/json",
+                Accept: "application/json",
             },
             body: JSON.stringify({
                 user: {
@@ -50,7 +50,7 @@ class Signup extends Component{
             })
         }
 
-        fetch('http://localhost:3001/users', options)
+        fetch("https://ez-garage-api.herokuapp.com//users", options)
         .then(r => {
             if (r.ok){
                 this.setState({ redirect: true })
@@ -61,7 +61,7 @@ class Signup extends Component{
     render(){
         const { redirect } = this.state;
         if (redirect) {
-          return <Redirect to='/login'/>;
+          return <Redirect to="/login"/>;
         }
 
         return (

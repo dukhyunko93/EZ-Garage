@@ -1,12 +1,19 @@
 .home-background {
-    background-image: url('../img/pexels-gratisography-474.jpg');
-    position: absolute;
-    left: 0;
+    background-image: url('../img/Screen\ Shot\ 2020-10-08\ at\ 12.38.59\ PM.png');
+
+    min-width: 100%;
+    min-height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: fixed;
     top: 0;
-    width: 100%;
-    height: 100%;
+    left: 0;
+
     z-index: -1;
-    opacity: 0.3;
+
+    opacity: 1;
 }
 
 .home-search {
@@ -18,7 +25,6 @@
     color: white;
     border-radius: 1em;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
-    background: rgba(0, 0, 0, 0.4);
     width: 50%;
     padding: 20px;
     margin:0 auto !important;
@@ -46,7 +52,6 @@
 
 .value {
     color: white;
-    border-radius: 1em;
     width: 340px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
     background: rgba(0, 0, 0, 0.4);

@@ -27,6 +27,30 @@ function NavBar (props){
     const handleClose = () => {
       setAnchorEl(null);
     };
+
+    const stateCoordinates = [ 
+      {full: "New York City", lat: 40.7128, lng: -74.0060},
+      {full: "Los Angeles", lat: 34.0522, lng: -118.2437}
+    ]
+
+    const renderStates = (state) => {
+      return (
+        <Link key={state.full} style={{color: 'black', textDecoration: 'none'}} to={{
+          pathname: '/index',
+          center: {
+              lat: state.lat,
+              lng: state.lng,
+            }
+        }}
+      >         
+        <MenuItem>
+          <ListItemText primary={state.full} />
+        </MenuItem>
+      </Link>
+      )
+    }
+
+
     if (Cookies.get('jwt') === undefined || Cookies.get('jwt') === "undefined"){
       return (
         <div>
@@ -63,11 +87,7 @@ function NavBar (props){
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
               >   
-                  <NavLink to="/index" style={{color: "black"}}>
-                      <MenuItem>
-                          <ListItemText primary="New York City" />
-                      </MenuItem>
-                  </NavLink>
+                {stateCoordinates.map(state => renderStates(state))}
               </Menu>
               <UnauthorizedMenu />
             </Toolbar>
@@ -109,11 +129,7 @@ function NavBar (props){
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
               >   
-                  <NavLink to="/index" style={{color: "black"}}>
-                      <MenuItem>
-                          <ListItemText primary="New York City" />
-                      </MenuItem>
-                  </NavLink>
+                {stateCoordinates.map(state => renderStates(state))}
               </Menu>
           <AuthorizedMenu user={props.user} total_earning={props.total_earning} logOut={props.logOut} />
         </Toolbar>

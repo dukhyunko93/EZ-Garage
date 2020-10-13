@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { saveUser } from '../actions/user';
-import { connect } from 'react-redux';
-import Cookies from 'js-cookie';  
-import Map from '../component/Map/Map';
-import AutoComplete from '../component/AutoComplete';
-import ListingShow from './ListingShow'
-import ConfirmPage from './ConfirmPage'
+import React, { Component } from "react";
+import { saveUser } from "../actions/user";
+import { connect } from "react-redux";
+import Cookies from "js-cookie";  
+import Map from "../component/Map/Map";
+import AutoComplete from "../component/AutoComplete";
+import ListingShow from "./ListingShow"
+import ConfirmPage from "./ConfirmPage"
 
 class ListingIndex extends Component {
 
@@ -18,7 +18,7 @@ class ListingIndex extends Component {
   }
 
   componentDidMount(){
-    if(Cookies.get('jwt')){
+    if(Cookies.get("jwt")){
         this.props.getCurrentUser()
         .then(r => r.json())
         .then(r => {
@@ -31,7 +31,7 @@ class ListingIndex extends Component {
   }
 
   getAllListing = () => {
-      fetch('http://localhost:3001/listings')
+      fetch("https://ez-garage-api.herokuapp.com/listings")
       .then(r => r.json())
       .then(r => {
           this.setState({ listings: r })

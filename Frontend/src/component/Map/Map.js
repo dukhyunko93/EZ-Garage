@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import mapStyles from './MapStyle'
+import { withRouter } from 'react-router';
 
 const mapContainerStyle = {
     width: "100%",
@@ -15,22 +16,38 @@ const options = {
 class Map extends Component{
 
     state ={
-        center:{
-            lat: 40.7128,
-            lng: -74.0060,
-        },
+        center: null,
         zoom: 11
     }
     
+    componentDidMount(){
+        this.setState({
+            center:{
+                lat: this.props.location.center ? this.props.location.center.lat : 40.7128,
+                lng: this.props.location.center ? this.props.location.center.lng : -74.0060,
+            },
+        })
+    }
+
     componentDidUpdate(prevProps) {
         if(this.props !== prevProps){
-            this.setState({
-                center:{
-                    lat: this.props.address[0]?.lat !== undefined ? this.props.address[0].lat : 40.7128,
-                    lng: this.props.address[0]?.lng !== undefined ? this.props.address[0].lng : -74.0060,
-                },
-                zoom: this.props.address[0]?.lat !== undefined ? 12 : 11,
-            })
+            if(this.props.address !== prevProps.address){
+                this.setState({
+                    center:{
+                        lat: this.props.address[0].lat,
+                        lng: this.props.address[0].lng,
+                    },
+                    zoom: 13,
+                })
+            } else if(this.props.location !== prevProps.location) {
+                this.setState({
+                    center:{
+                        lat: this.props.location.center.lat,
+                        lng: this.props.location.center.lng,
+                    },
+                    zoom: 11,
+                })
+            }
         }
     }
 
@@ -74,4 +91,4 @@ const mapStateToProps = state => {
     return state
 }
 
-export default connect(mapStateToProps)(Map);
+export default withRouter(connect(mapStateToProps)(Map));

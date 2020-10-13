@@ -58,8 +58,14 @@ class Login extends Component{
             body: JSON.stringify({user:userObj})
         }
         
-        fetch("http://localhost:3001/login", options)
-        .then(r => r.json())
+        fetch("https://ez-garage-api.herokuapp.com/login", options)
+        .then(r => {
+            if(!r.ok){
+                window.alert("wrong username or password")
+            } else {
+            return r.json()
+            }
+        })
         .then(r => {
             this.setCookie("jwt",r.jwt,1)
             this.setState({ redirect: true }, () => {
@@ -75,12 +81,12 @@ class Login extends Component{
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              Accept: 'application/json',
+              Accept: 'application/json'
             },
             body: JSON.stringify({user:userObj})
         }
         
-        fetch("http://localhost:3001/thirdpartylogin", options)
+        fetch("https://ez-garage-api.herokuapp.com/thirdpartylogin", options)
         .then(r => r.json())
         .then(r => {
             this.setCookie("jwt",r.jwt,1)

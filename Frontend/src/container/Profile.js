@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ListingCard from '../component/ListingCard'
-import ReservationCard from '../component/ReservationCard'
-import Cookies from 'js-cookie';  
-import { saveUser } from '../actions/user'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import ListingCard from "../component/ListingCard"
+import ReservationCard from "../component/ReservationCard"
+import Cookies from "js-cookie";  
+import { saveUser } from "../actions/user"
 
 class Profile extends Component {
     
@@ -28,7 +28,7 @@ class Profile extends Component {
     }
     
     getMyListing = () => {
-        fetch(`http://localhost:3001/listings/${this.props.user[0].id}`)
+        fetch(`https://ez-garage-api.herokuapp.com/listings/${this.props.user[0].id}`)
         .then(r => r.json())
         .then(r => {
             this.setState({ listings: r })
@@ -36,7 +36,7 @@ class Profile extends Component {
     }
     
     getMyReservation = () => {
-        fetch(`http://localhost:3001/reservations/${this.props.user[0].id}`)
+        fetch(`https://ez-garage-api.herokuapp.com/reservations/${this.props.user[0].id}`)
         .then(r => r.json())
         .then(r => {
             this.setState({ reservations: r })
@@ -45,13 +45,13 @@ class Profile extends Component {
 
     deleteMyListing = (listingID) => {
         let options = {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
-                Authorization: `Bearer ${Cookies.get('jwt')}`
+                Authorization: `Bearer ${Cookies.get("jwt")}`
             }
         }
       
-        return fetch(`http://localhost:3001/listings/${listingID}`, options)
+        return fetch(`https://ez-garage-api.herokuapp.com/listings/${listingID}`, options)
     }
 
     cancelListing = (listingObj) => {
@@ -65,13 +65,13 @@ class Profile extends Component {
 
     deleteMyReservation = (reservationId) => {
         let options = {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
-                Authorization: `Bearer ${Cookies.get('jwt')}`
+                Authorization: `Bearer ${Cookies.get("jwt")}`
             }
         }
       
-        return fetch(`http://localhost:3001/reservations/${reservationId}`, options)
+        return fetch(`https://ez-garage-api.herokuapp.com/reservations/${reservationId}`, options)
     }
 
     cancelReservation = (reservationObj) => {
