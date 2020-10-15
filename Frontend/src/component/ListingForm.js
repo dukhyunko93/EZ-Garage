@@ -81,9 +81,8 @@ class ListingForm extends Component{
             body: formData
         }
 
-        fetch("https://ez-garage-api.herokuapp.com/listings", options)
+        fetch("http://localhost:3001/listings", options)
         .then(r => {
-            console.log(r)
             if (r.ok){
                 this.setState({ redirect: true })
             }
@@ -112,7 +111,7 @@ class ListingForm extends Component{
             body: formData 
         }
 
-        fetch(`https://ez-garage-api.herokuapp.com/listings/${this.props.location.listingObj.id}`, options)
+        fetch(`http://localhost:3001/listings/${this.props.location.listingObj.id}`, options)
         .then(r => {
             if (r.ok){
                 this.setState({ redirect: true })

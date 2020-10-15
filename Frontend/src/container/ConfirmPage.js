@@ -45,7 +45,7 @@ class ConfirmPage extends Component {
       body: JSON.stringify({reservation: reservation})
     }
 
-    return fetch("https://ez-garage-api.herokuapp.com/reservations", options)
+    return fetch("http://localhost:3001/reservations", options)
   }
 
   render() {

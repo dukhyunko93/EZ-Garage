@@ -31,7 +31,7 @@ class ListingIndex extends Component {
   }
 
   getAllListing = () => {
-      fetch("https://ez-garage-api.herokuapp.com/listings")
+      fetch("http://localhost:3001/listings")
       .then(r => r.json())
       .then(r => {
           this.setState({ listings: r })

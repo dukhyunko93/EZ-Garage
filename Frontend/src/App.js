@@ -42,7 +42,7 @@ class App extends Component {
         }
       }
 
-      return fetch("https://ez-garage-api.herokuapp.com/profile", config)
+      return fetch("http://localhost:3001/profile", config)
   }
 
   logOut = () => {

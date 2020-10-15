@@ -96,4 +96,5 @@ html, body, #root {
 
 .modal-content {
     background-color: transparent !important;
+    border: none;
 }

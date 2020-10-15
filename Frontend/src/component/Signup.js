@@ -50,7 +50,7 @@ class Signup extends Component{
             })
         }
 
-        fetch("https://ez-garage-api.herokuapp.com//users", options)
+        fetch("http://localhost:3001/users", options)
         .then(r => {
             if (r.ok){
                 this.setState({ redirect: true })

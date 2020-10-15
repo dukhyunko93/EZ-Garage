@@ -69,7 +69,6 @@ class Map extends Component{
                 key={listingObj.listing.id}
                 position={{lat: parseFloat(listingObj.listing.latitude), lng: parseFloat(listingObj.listing.longitude)}}
                 onClick={() => this.clickHandler(listingObj)}
-                label={`$${listingObj.listing.price}`}
             />
         )
     }

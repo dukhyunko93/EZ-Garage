@@ -18,6 +18,7 @@ class Login extends Component{
         username: "",
         password: "",
         redirect: false,
+        incorretInfo: false,
     }
 
     validateForm() {
@@ -58,20 +59,20 @@ class Login extends Component{
             body: JSON.stringify({user:userObj})
         }
         
-        fetch("https://ez-garage-api.herokuapp.com/login", options)
+        fetch("http://localhost:3001/login", options)
         .then(r => {
             if(!r.ok){
-                window.alert("wrong username or password")
+                this.setState({incorretInfo: true})
             } else {
-            return r.json()
+                return r.json()
+                .then(r => {
+                    this.setCookie("jwt",r.jwt,1)
+                    this.setState({ redirect: true }, () => {
+                        this.props.saveUser(r.user)
+                        this.props.saveEarning(r.total_earnings)
+                    })
+                })
             }
-        })
-        .then(r => {
-            this.setCookie("jwt",r.jwt,1)
-            this.setState({ redirect: true }, () => {
-                this.props.saveUser(r.user)
-                this.props.saveEarning(r.total_earnings)
-            })
         })
     }
 
@@ -86,7 +87,7 @@ class Login extends Component{
             body: JSON.stringify({user:userObj})
         }
         
-        fetch("https://ez-garage-api.herokuapp.com/thirdpartylogin", options)
+        fetch("http://localhost:3001/thirdpartylogin", options)
         .then(r => r.json())
         .then(r => {
             this.setCookie("jwt",r.jwt,1)
@@ -132,14 +133,14 @@ class Login extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <div className="third-party-login">
                         <GoogleLogin
-                            clientId={process.env.REACT_APP_GOOGLELOGIN_KEY}
+                            clientId="58866883105-fo9gd9804pios33p371reob8ep5svh94.apps.googleusercontent.com"
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                             cookiePolicy={'single_host_origin'}
                             buttonText="Login with Google"
                         />
                         <FacebookLogin
-                            appId={process.env.REACT_APP_FACEBOOK_KEY}
+                            appId="3325404494241932"
                             autoLoad={false}
                             fields="name,email,picture"
                             callback={this.responseFacebook} 
@@ -167,6 +168,7 @@ class Login extends Component{
                         type="password"
                     />
                     </FormGroup>
+                    {this.state.incorretInfo ? <p style={{color:"red"}}>Wrong username or password</p> : null}
                     <Button block bssize="large" variant="secondary" disabled={!this.validateForm()} type="submit">
                         Login
                     </Button>

@@ -28,7 +28,7 @@ class Profile extends Component {
     }
     
     getMyListing = () => {
-        fetch(`https://ez-garage-api.herokuapp.com/listings/${this.props.user[0].id}`)
+        fetch(`http://localhost:3001/listings/${this.props.user[0].id}`)
         .then(r => r.json())
         .then(r => {
             this.setState({ listings: r })
@@ -36,7 +36,7 @@ class Profile extends Component {
     }
     
     getMyReservation = () => {
-        fetch(`https://ez-garage-api.herokuapp.com/reservations/${this.props.user[0].id}`)
+        fetch(`http://localhost:3001/reservations/${this.props.user[0].id}`)
         .then(r => r.json())
         .then(r => {
             this.setState({ reservations: r })
@@ -51,7 +51,7 @@ class Profile extends Component {
             }
         }
       
-        return fetch(`https://ez-garage-api.herokuapp.com/listings/${listingID}`, options)
+        return fetch(`http://localhost:3001/listings/${listingID}`, options)
     }
 
     cancelListing = (listingObj) => {
@@ -71,7 +71,7 @@ class Profile extends Component {
             }
         }
       
-        return fetch(`https://ez-garage-api.herokuapp.com/reservations/${reservationId}`, options)
+        return fetch(`http://localhost:3001/reservations/${reservationId}`, options)
     }
 
     cancelReservation = (reservationObj) => {

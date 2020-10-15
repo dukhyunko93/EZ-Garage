@@ -27,7 +27,6 @@ export default class PaymentForm extends Component {
 
 
   submitHandler = () => {
-    console.log(this.state)
     let ls = require('local-storage')
     ls.set('cardInput', this.state)
     this.props.handleNext()
