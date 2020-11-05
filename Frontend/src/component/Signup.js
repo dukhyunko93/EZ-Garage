@@ -12,7 +12,8 @@ class Signup extends Component{
         username: "",
         password: "",
         confirmPassword: "",
-        redirect: false
+        redirect: false,
+        exisitingAccount: false,
     }
 
     validateForm = () => {
@@ -50,10 +51,13 @@ class Signup extends Component{
             })
         }
 
+        // fetch("https://ez-garage-api.herokuapp.com/users", options)
         fetch("http://localhost:3001/users", options)
         .then(r => {
-            if (r.ok){
-                this.setState({ redirect: true })
+            if(!r.ok){
+                this.setState({exisitingAccount: true})
+            } else {
+                this.setState({redirect: true})
             }
         })
     }
@@ -118,7 +122,8 @@ class Signup extends Component{
                         type="password"
                     />
                     </FormGroup>
-                    <Button block bssize="large" variant="secondary" type="submit" >
+                    {this.state.exisitingAccount ? <p style={{color:"red"}}>This account already exists.</p> : null}
+                    <Button bssize="large" type="submit" >
                         Signup
                     </Button>
                 </form>
